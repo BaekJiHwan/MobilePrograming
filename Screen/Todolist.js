@@ -9,26 +9,26 @@ import {
 } from 'react-native';
 
 const Todolist = () => {
-  const [myTextInput, setMyTextInput] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
 
-  const onChangeInput = (text) => {
-    setMyTextInput(text);
+  const handleInputChange = (text) => {
+    setInputValue(text);
   };
 
-  const onAddTodo = () => {
-    if (myTextInput.trim() !== '') {
+  const handleAddTodo = () => {
+    if (inputValue.trim() !== '') {
       const newTodo = {
         id: Math.random().toString(),
-        text: myTextInput,
-        date: new Date().toLocaleDateString() 
+        text: inputValue,
+        date: new Date().toLocaleDateString()
       };
       setTodos([...todos, newTodo]);
-      setMyTextInput('');
+      setInputValue('');
     }
   };
 
-  const onDeleteTodo = (id) => {
+  const handleDeleteTodo = (id) => {
     const updatedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
@@ -39,13 +39,13 @@ const Todolist = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          value={myTextInput}
-          onChangeText={onChangeInput}
+          value={inputValue}
+          onChangeText={handleInputChange}
           multiline={true}
-          numberOfLines={4} 
+          numberOfLines={4}
         />
       </View>
-      <TouchableOpacity style={styles.addButton} onPress={onAddTodo}>
+      <TouchableOpacity style={styles.addButton} onPress={handleAddTodo}>
         <Text style={styles.addButtonText}>할 일 추가하기</Text>
       </TouchableOpacity>
       <View style={styles.divider}></View>
@@ -57,8 +57,8 @@ const Todolist = () => {
               <Text style={styles.todoText}>{todo.text}</Text>
               <Text style={styles.dateText}>{todo.date}</Text>
             </View>
-            <TouchableOpacity onPress={() => onDeleteTodo(todo.id)}>
-              <Text style={styles.deleteButton}>삭제</Text>
+            <TouchableOpacity onPress={() => handleDeleteTodo(todo.id)}>
+              <Text style={styles.deleteButton}>Delete</Text>
             </TouchableOpacity>
           </View>
         ))}
@@ -66,6 +66,7 @@ const Todolist = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
