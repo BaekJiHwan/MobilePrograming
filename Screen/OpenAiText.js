@@ -7,7 +7,7 @@ const OpenAI = () => {
 
   const generateText = async () => {
     const prompt = text;
-    const apiKey = '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';
+    const apiKey = '';
     const url = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
     const headers = {
